@@ -1,0 +1,68 @@
+name: Node.js Selenium Testing
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-modules
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Prepare artifacts
+        run: |
+          tar -czvf www-build.tar.gz index.html validate.js welcome.html xato-net-10-million-passwords-1000.txt package.json .github/selenium.test.js
+          ls -l
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: www-build
+          path: www-build.tar.gz
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download built files
+        uses: actions/download-artifact@v4
+        with:
+          name: www-build
+
+      - name: Extract artifacts
+        run: |
+          tar -xzvf www-build.tar.gz
+          ls -l .github
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start static web server
+        run: |
+          npx http-server . -p 8080 &
+          sleep 5
+
+      - name: Verify server is running
+        run: |
+          curl -f http://localhost:8080 || { echo "Server failed to start"; exit 1; }
+
+      - name: Run Selenium tests
+        run: node .github/selenium.test.js
