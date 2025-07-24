@@ -62,7 +62,7 @@ jobs:
 
       - name: Verify server is running
         run: |
-          curl -f http://localhost:8080 || { echo "Server failed to start"; exit 1; }
+          curl -f http://localhost:80 || { echo "Server failed to start"; exit 1; }
 
       - name: Run Selenium tests
         run: node .github/selenium.test.js
