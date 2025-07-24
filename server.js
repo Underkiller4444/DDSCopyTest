@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const fs = require("fs");
 
 const app = express();
-const PORT = 80;
+const PORT = process.env.PORT || 8080;
 
 // Load common passwords list
 const commonPasswords = new Set(

@@ -15,7 +15,7 @@ const chromePath = process.env.CHROME_BIN || '/usr/bin/google-chrome';
 
     try {
         // Use port 80 as per your docker-compose and server.js
-        await driver.get('http://localhost/');
+        await driver.get('http://localhost:8080/');
 
         // Check for the correct title
         let title = await driver.getTitle();
