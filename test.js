@@ -1,3 +1,5 @@
-// test.js
+const { evaluate } = require('mathjs');
+
 const expression = '1 + 1';
-eval(`console.log(${expression})`); // This evaluates the expression 1 + 1
+const result = evaluate(expression);
+console.log(result); // 2

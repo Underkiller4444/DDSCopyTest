@@ -32,4 +32,3 @@ volumes:
   sonarqube_logs:
   postgresql:
 
-#sqp_5001e30d9279bd73d7deebe1205d9c48813e2eca

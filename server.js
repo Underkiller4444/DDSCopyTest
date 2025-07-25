@@ -5,6 +5,9 @@ const fs = require("fs");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Disable X-Powered-By header for security
+app.disable('x-powered-by');
+
 // Load common passwords list
 const commonPasswords = new Set(
   fs.readFileSync("./xato-net-10-million-passwords-1000.txt", "utf-8").split("\n").map(p => p.trim())
