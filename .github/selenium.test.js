@@ -47,6 +47,8 @@ const chromePath = process.env.CHROME_BIN ||
 
         // Test 3: Test password without special characters
         console.log('Test 3: Testing invalid password (no special characters)...');
+        // Wait for page to be ready and find fresh elements after page reload
+        await driver.wait(until.elementLocated(By.name('password')), 5000);
         passwordInput = await driver.findElement(By.name('password'));
         loginButton = await driver.findElement(By.css('button[type="submit"]'));
         
@@ -62,6 +64,8 @@ const chromePath = process.env.CHROME_BIN ||
 
         // Test 4: Test password from common passwords list
         console.log('Test 4: Testing password from common list...');
+        // Wait for page to be ready and find fresh elements after page reload
+        await driver.wait(until.elementLocated(By.name('password')), 5000);
         passwordInput = await driver.findElement(By.name('password'));
         loginButton = await driver.findElement(By.css('button[type="submit"]'));
         
@@ -77,6 +81,8 @@ const chromePath = process.env.CHROME_BIN ||
 
         // Test 5: Test valid password that leads to welcome page
         console.log('Test 5: Testing valid password...');
+        // Wait for page to be ready and find fresh elements after page reload
+        await driver.wait(until.elementLocated(By.name('password')), 5000);
         passwordInput = await driver.findElement(By.name('password'));
         loginButton = await driver.findElement(By.css('button[type="submit"]'));
 
@@ -98,6 +104,7 @@ const chromePath = process.env.CHROME_BIN ||
 
         // Test 6: Test logout functionality
         console.log('Test 6: Testing logout...');
+        // Find fresh logout button element on the welcome page
         let logoutButton = await driver.findElement(By.css('button[type="submit"]'));
         await logoutButton.click();
 
