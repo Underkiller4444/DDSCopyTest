@@ -22,7 +22,6 @@ services:
     #   GIT_SERVER_USER_PASSWORD: "password"  # Optional: set password for Git user
 
 
-    
   sonarqube:
     image: sonarqube:latest
     container_name: sonarqube
