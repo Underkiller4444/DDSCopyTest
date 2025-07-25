@@ -25,7 +25,7 @@ const chromePath = process.env.CHROME_BIN ||
         
         // Test 1: Check search page loads correctly
         console.log('Test 1: Loading search page...');
-        await driver.get('http://localhost:80/');
+        await driver.get('http://localhost:8080/');
         let title = await driver.getTitle();
         if (!title.includes('Search')) throw new Error('Search page not loaded');
         console.log('✓ Search page loaded successfully');
