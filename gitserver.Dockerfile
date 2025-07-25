@@ -8,8 +8,8 @@ RUN apk add --no-cache tini git \
 USER git
 WORKDIR /home/git
 
-RUN git config --global user.name "Anderson" && \
-    git config --global user.email "matrix@neo.com"
+RUN git config --global user.name "neo" && \
+    git config --global user.email "ner@anderson.com"
 
 # Remove this line unless you're not mounting volumes
 RUN git init --bare repository.git 
